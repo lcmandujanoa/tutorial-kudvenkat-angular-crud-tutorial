@@ -1,32 +1,12 @@
-<div class="card mb-3" style="max-width: 540px;" *ngFor="let employee of employees">
-  <div class="card-header">{{employee.name}}</div>
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img [src]="employee.photoPath" class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-6"> Gender </div>
-          <div class="col-md-6"> : {{employee.gender}} </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6"> contactPreference </div>
-          <div class="col-md-6"> : {{employee.contactPreference}} </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6"> email </div>
-          <div class="col-md-6"> : {{employee.email}} </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6"> dateOfBirth </div>
-          <div class="col-md-6"> : {{employee.dateOfBirth | date}} </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6"> department </div>
-          <div class="col-md-6"> : {{employee.department}} </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="mb-3">
+  <input type="text" class="form-control" placeholder="Search By Name" [(ngModel)]="searchTerm">
+</div>
+
+<div *ngFor="let employee of filteredEmployees">
+  <app-display-employee [employee]="employee" [searchTerm]="searchTerm" (notifyDelete)="onDeleteNotificacion($event)">
+  </app-display-employee>
+</div>
+
+<div *ngIf="error">
+  {{error}}
 </div>
